@@ -1,0 +1,31 @@
+#participant-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#participant-strip .grid-container {
+  position: relative;
+  height: 100%;
+}
+
+#participant-strip .grid-container.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  height: 100%;
+  background-color: #fff;
+}
+
+#participant-strip .wide-track {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: #000;
+}

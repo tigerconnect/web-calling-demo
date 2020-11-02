@@ -1,0 +1,37 @@
+#call-members .member {
+  margin-top: 20px;
+  display: flex;
+}
+
+#call-members .member div {
+  flex: 1;
+}
+
+#call-members .member .name {
+  text-align: left;
+}
+
+#call-members .member .status {
+  display: flex;
+  font-size: 0.8em;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#call-members button {
+  margin-top: 20px;
+}
+
+#call-members .red {
+  color: red;
+}
+
+#call-members .blue {
+  color: blue;
+}
+
+#call-members .green {
+  color: green;
+}
+
+

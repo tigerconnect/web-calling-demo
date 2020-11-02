@@ -1,0 +1,46 @@
+.fab {
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer;
+  background-color: #4C4C4C;
+}
+
+.fab:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: #313131;
+}
+
+.fab.inactive {
+  background-color: #B7B7B7 !important;
+}
+
+.fab.inactive:hover {
+  background-color: #B7B7B7 !important;
+}
+
+.fab.disabled, .fab.inactive {
+  cursor: default !important;
+}
+
+.fab.disabled:hover, .fab.inactive:hover {
+  box-shadow: none !important;
+}
+
+.fab.red {
+  background-color: #db524b;
+}
+
+.fab.red:hover {
+  background-color: #993934;
+}
+
+.fab.green {
+  background-color: #4adc68;
+}
+
+.fab.green:hover {
+  background-color: #339948;
+}
+

@@ -1,0 +1,16 @@
+#call-menu button {
+  margin-top: 20px;
+}
+
+/* #call-menu .label {
+  font-weight: bold;
+  text-align: left;
+  font-size: 0.75em;
+  margin-top: 20px;
+  margin-bottom: 5px;
+} */
+
+#call-menu .alert {
+  color: #ea1c2d;
+  margin-top: 20px;
+}

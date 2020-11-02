@@ -1,0 +1,36 @@
+.connecting-preview {
+  background-color: #d9e5ee;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.connecting-preview .avatar-container {
+  background-color: #4a657b;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.23);
+}
+
+.connecting-preview .avatar-container .avatar {
+  width: 28px;
+  height: 28px;
+  padding-bottom: 3px;
+}
+
+.connecting-preview .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a657b;
+  font-size: 14px;
+  font-weight: 700;
+}

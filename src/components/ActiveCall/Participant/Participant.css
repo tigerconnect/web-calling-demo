@@ -1,0 +1,119 @@
+.participant-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.participant-info.isVideoSwitchedOff video {
+  filter: blur(4px) grayscale(1) brightness(0.5);
+}
+
+.participant-info.isLocalVideoSwitchedOff {
+  border: 3px solid white;
+  border-radius: 12px;
+}
+
+.participant-info.isLocal {
+  position: fixed;
+  width: 90px;
+  height: 83px;
+  z-index: 2;
+  border: 3px solid white;
+  border-radius: 12px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.participant-info.isLocalMax {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+  border: 3px solid white;
+  border-radius: 12px;
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.participant-info.isRemote {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+.participant-info.p2p {
+  top: 0;
+  position: absolute;
+}
+
+.participant-info.wide-track {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.participant-info.border {
+  border: 2px solid #fff;
+}
+
+.participant-info.dominantSpeaker {
+  border: 2px solid #fcb040;
+}
+
+.participant-info video {
+  filter: none;
+}
+
+.participant-info .info-container {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0.4em;
+  width: 100%;
+  background: transparent;
+  align-items: center;
+}
+
+.participant-info .info-container.remoteHideVideo {
+  background: #d9e5ee;
+  justify-content: center;
+}
+
+.participant-info .info-container.localHideVideo {
+  background: #c2cbd2;
+  justify-content: center;
+  align-items: center;
+}
+
+.participant-info .name-audio-holder {
+  background-color: rgba(53, 51, 60, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 20px;
+  bottom: 7px;
+  left: 7px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px;
+  max-width: 100%;
+}
+
+.participant-info .name-audio-holder.gridNameAudioHolder {
+  left: 'auto',
+}
+
+.participant-info .audio-off path[fill-rule="nonzero"] {
+  fill: #ff4d5b;
+}
+
+.participant-info .ellipsis {
+  white-space: 'nowrap';
+  overflow: 'hidden';
+  text-overflow: 'ellipsis';
+}
