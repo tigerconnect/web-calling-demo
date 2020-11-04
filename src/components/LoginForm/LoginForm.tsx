@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useAppState } from "../../state";
 import logo from "../../images/logo.png";
 import "./LoginForm.css";
@@ -8,6 +8,11 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const onSubmit = useCallback((e) => {
+    e.preventDefault()
+    signIn(email, password)
+  }, [email, password, signIn])
+
   return (
     <div id="login-form">
       <div>
@@ -16,13 +21,14 @@ export default function LoginForm() {
           <div className="label">CALLING SDK DEMO</div>
         </div>
         { signInError && <div className="error"> Login attempt failed. Please check your email/password </div> }
-        <div className={"form"}>
+        <form className={"form"} onSubmit={onSubmit}>
           <input
             disabled={isSigningIn}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email"
             type="text"
             value={email}
+            autoComplete="on"
           />
           <input
             disabled={isSigningIn}
@@ -30,11 +36,11 @@ export default function LoginForm() {
             placeholder="password"
             type="password"
             value={password}
+            autoComplete="on"
           />
-          <button onClick={() => signIn(email, password)}> LOGIN </button>
-        </div>
+          <button onClick={onSubmit}> LOGIN </button>
+        </form>
         <div className="helper">
-          For documentation on TigerConnect's Calling SDK please refer to:
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export default function CallMembers() {
   const membersToExcludeFromSearch = members.filter(member => {
     if (!currentCall) return false
     const status = currentCall.membersStatuses[member.id]
-    return !['Missed call', 'Declined call'].includes(status)
+    return !['Missed call', 'Declined call', 'Left call'].includes(status)
   })
   const activeMembers = members.filter(member => {
     if (!currentCall) return false
@@ -21,13 +21,17 @@ export default function CallMembers() {
   })
 
   useEffect(() => {
+    let mounted = true;
     const getMembers = async () => {
       const users = await Promise.all(Object.keys(currentCall.membersStatuses).map(async id => {
         return client.users.find(id, currentCall.organizationId)
       }))
-      setMembers(users)
+      mounted && setMembers(users)
     }
     currentCall && getMembers()
+    return () => {
+      mounted = false;
+    }
   }, [client.users, currentCall])
 
   const inviteMember = useCallback(() => {

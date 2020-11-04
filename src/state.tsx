@@ -18,6 +18,7 @@ export interface StateContextType {
   answerWithCamOn: boolean;
   client: any;
   currentCall: any;
+  end: Function;
   invite: Function;
   isEnlargedWindow: boolean;
   isGroupCallEnabled: boolean;
@@ -87,12 +88,12 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
   }, []);
 
   const invite = useCallback(async (searchResult) => {
-    const newCall = await client.calls.invite(currentCall, searchResult.entity.id, {});
+    const newCall = await client.calls.inviteUser(currentCall, searchResult.entity.id);
     setCurrentCall({ ...newCall })
   }, [currentCall])
 
   const join = useCallback(async () => {
-    const newCall = await client.calls.join(currentCall, {});
+    const newCall = await client.calls.join(currentCall);
     setRoom(newCall.room)
     setSendDataMessage(newCall.sendDataMessage)
     setCurrentCall({ ...newCall })
@@ -116,11 +117,17 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
     setCurrentCall({ ...newCall })
   }, [])
 
+  const end = useCallback(async () => {
+    await client.calls.end(currentCall)
+    clear()
+  }, [clear, currentCall])
+
   return (
     <StateContext.Provider
       value={{
         ...contextValue,
         answerWithCamOn,
+        end,
         invite,
         isEnlargedWindow,
         isGroupCallEnabled,

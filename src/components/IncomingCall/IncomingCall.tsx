@@ -78,7 +78,7 @@ export default function IncomingCall() {
 
     switch (actionType) {
       case ActionType.DECLINE_CALL:
-        client.calls.decline(currentCall, {});
+        client.calls.decline(currentCall);
         break;
       case ActionType.JOIN_CALL_WITH_VIDEO:
         join();
@@ -134,7 +134,7 @@ export default function IncomingCall() {
           </Fab>
         ))}
       </div>
-      {/* <audio src={'media/call.wav'} autoPlay loop /> */}
+      <audio src={'media/call.wav'} autoPlay loop />
     </div>
   );
 }

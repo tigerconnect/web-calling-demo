@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import clsx from 'clsx';
 import { useAppState } from "../../../state";
 import { SearchResult } from "../../../types";
+import AvatarImage from "../../AvatarImage/AvatarImage";
 import cancelIcon from "../../../images/cancel-icon.svg"
 import "./CallTarget.css";
 
@@ -46,7 +47,7 @@ export default function CallTarget({
           return isPatientNetwork ? true : st !== "patient_account";
         }),
       });
-      setResults(results);
+      setResults(results.filter((r:SearchResult) => r.entityType !== 'role'));
     },
     [client.search, excludeIds, network, organization, searchFields, searchTypes]
   );
@@ -65,6 +66,7 @@ export default function CallTarget({
   const targetDisplay = () => {
     return (
       <div className={clsx('selected-target', { disabled })} onClick={() => !disabled && setSearchTarget(null)}>
+        <div className="target-avatar"><AvatarImage entity={searchTarget?.entity}/></div>
         <div className="name">{searchTarget?.entity.displayName}</div>
         <div className="cancel"><img src={cancelIcon} alt="cancel" /></div>
       </div>
@@ -88,7 +90,12 @@ export default function CallTarget({
               key={result.entity.id}
               onClick={() => setSearchTarget(result)}
             >
-              {result.entity.displayName}
+              <div className="search-result-avatar">
+                <AvatarImage entity={result.entity}/>
+              </div>
+              <div className="search-result-display-name">
+                {result.entity.displayName}
+              </div>
             </div>
           ))}
         </div>

@@ -2,6 +2,21 @@
   text-align: left;
   padding: 10px;
   cursor: pointer;
+  display: flex;
+}
+
+#call-target .search-result .search-result-avatar {
+  width: 45px;
+}
+
+#call-target .search-result .search-result-display-name {
+  flex: 1;
+}
+
+#call-target .search-result .search-result-avatar,
+#call-target .search-result .search-result-display-name {
+  display: flex;
+  align-items: center;;
 }
 
 #call-target .search-result:hover {
@@ -31,6 +46,13 @@
 #call-target .selected-target .cancel {
   width: 50px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#call-target .selected-target .target-avatar {
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

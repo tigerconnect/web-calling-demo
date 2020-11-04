@@ -23,8 +23,8 @@ export default function CallMenu() {
   }, [client.organizations]);
 
   useEffect(() => {
-    if (!searchTarget) return
     setErrorMessage('')
+    if (!searchTarget) return
     if (searchTarget.entityType === 'group') {
       if (searchTarget.entity.memberIds!.length > 2 && !isGroupCallEnabled) {
         setErrorMessage('Group Video Calling is not enabled for this Organization')
@@ -76,7 +76,7 @@ export default function CallMenu() {
         </div>
       )}
       {errorMessage && <div className="alert"> {errorMessage} </div>}
-      {canCall && (
+      {canCall && !errorMessage && (
         <button onClick={() => start('Provider', activeOrg!.id, searchTarget)}>
           Call
         </button>

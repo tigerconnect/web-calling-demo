@@ -6,7 +6,7 @@ import useLocalVideoToggle from './useLocalVideoToggle';
 import { useAppState } from '../../../state';
 
 export default function useParticipants() {
-  const { client, currentCall } = useAppState();
+  const { end } = useAppState();
   const {
     room,
     localTrackToggling: { isLocalVideoToggledOff },
@@ -31,10 +31,10 @@ export default function useParticipants() {
   useEffect(() => {
     if (oldParticipants.current.length > participants.length && participants.length === 0) {
       room.disconnect();
-      client.calls.end(currentCall, { reason: 'ended'})
+      end()
     }
     oldParticipants.current = participants;
-  }, [client, currentCall, participants, room]);
+  }, [end, participants, room]);
 
   useEffect(() => {
     const participantConnected = (participant: Participant) => {

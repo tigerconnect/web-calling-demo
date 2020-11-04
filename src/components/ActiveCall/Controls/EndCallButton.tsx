@@ -8,11 +8,11 @@ import { useAppState } from '../../../state'
 
 export default function EndCallButton() {
   const { room } = useVideoContext();
-  const { client, currentCall } = useAppState()
+  const { end } = useAppState()
 
   function disconnect() {
     room.disconnect();
-    client.calls.end(currentCall, { reason: 'ended' })
+    end()
   }
 
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from 'clsx';
 import "./Fab.css";
 
 function setSize(size: string) {
@@ -26,8 +27,8 @@ export default function Fab({
   size = "medium",
 }: FabProps) {
   const style = {
-    margin: `${marginButton}`,
-    cursor: `${isDisabled ? "default" : "pointer"}`,
+    margin: marginButton,
+    cursor: isDisabled ? "default" : "pointer",
     height: `${setSize(size)}px`,
     width: `${setSize(size)}px`,
   };
@@ -36,7 +37,7 @@ export default function Fab({
 
   return (
     <div
-      className={`fab ${color} ${isInactive && 'inactive'} ${disabled && 'disabled'}`}
+      className={clsx(`fab ${color}`, { disabled, inactive: isInactive })}
       style={style}
       onClick={onClick}
       data-qa-id={dataQaId}

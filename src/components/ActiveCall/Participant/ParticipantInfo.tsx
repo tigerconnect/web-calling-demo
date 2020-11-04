@@ -32,7 +32,6 @@ export default function ParticipantInfo({ participant, children, index }) {
   const isLocal = participant === room.localParticipant;
   const remoteParticipantsCount = room.participants ? room.participants.size : 0;
   const [avatarUrl, setAvatarUrl] = useState(null);
-  const [isProvider, setIsProvider] = useState(null);
   const [displayName, setDisplayName] = useState(null);
 
   const dominantSpeaker = useDominantSpeaker();
@@ -48,7 +47,6 @@ export default function ParticipantInfo({ participant, children, index }) {
       } = await client.users.find(userId, payload.orgId);
       const patientOrContact = isPatient || isPatientContact;
       setAvatarUrl(avatarUrl);
-      setIsProvider(!patientOrContact);
       setDisplayName(
         `${displayName}${
           patientOrContact ? ` (${isPatient ? 'Patient' : patientContact.relation})` : ''
@@ -97,8 +95,7 @@ export default function ParticipantInfo({ participant, children, index }) {
           ) : (
             <AvatarImage
               size={40}
-              squareAvatar={false}
-              entityType={isProvider ? 'user' : 'singleProvider'}
+              entity={ displayName && {displayName, type: 'account'}}
               avatarUrl={avatarUrl}
             />
           ))}

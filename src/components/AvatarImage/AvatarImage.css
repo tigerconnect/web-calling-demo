@@ -1,0 +1,15 @@
+.avatar-image {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  background-color: aliceblue;
+}
+
+.avatar.type-group {
+  background-color: #fff4e0;
+}
