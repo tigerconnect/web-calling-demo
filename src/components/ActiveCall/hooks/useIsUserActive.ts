@@ -6,7 +6,9 @@ export default function useIsUserActive() {
   const timeoutIDRef = useRef(0);
 
   useEffect(() => {
+    let mounted = true
     const handleUserActivity = throttle(() => {
+      if (!mounted) return;
       setIsUserActive(true);
       clearTimeout(timeoutIDRef.current);
       const timeoutID = window.setTimeout(() => setIsUserActive(false), 5000);
@@ -19,6 +21,7 @@ export default function useIsUserActive() {
     window.addEventListener('click', handleUserActivity);
     window.addEventListener('keydown', handleUserActivity);
     return () => {
+      mounted = false
       window.removeEventListener('mousemove', handleUserActivity);
       window.removeEventListener('click', handleUserActivity);
       window.removeEventListener('keydown', handleUserActivity);
