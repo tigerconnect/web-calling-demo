@@ -44,6 +44,7 @@ export default function useParticipants() {
       setParticipants((prevParticipants) => [...prevParticipants, participant]);
     };
     const participantDisconnected = (participant: Participant) => {
+      if (room.state === 'disconnected') return
       setParticipants((prevParticipants) => prevParticipants.filter((p) => p !== participant));
     };
     room.on('participantConnected', participantConnected);

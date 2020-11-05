@@ -37,6 +37,7 @@ export default function ParticipantInfo({ participant, children, index }) {
   const dominantSpeaker = useDominantSpeaker();
 
   useEffect(() => {
+    let mounted = true;
     async function userInfo(userId) {
       const {
         avatarUrl,
@@ -46,6 +47,7 @@ export default function ParticipantInfo({ participant, children, index }) {
         patientContact,
       } = await client.users.find(userId, payload.orgId);
       const patientOrContact = isPatient || isPatientContact;
+      if (!mounted) return
       setAvatarUrl(avatarUrl);
       setDisplayName(
         `${displayName}${
@@ -53,7 +55,10 @@ export default function ParticipantInfo({ participant, children, index }) {
         }`
       );
     }
-    userInfo(participant.identity);
+    mounted && userInfo(participant.identity);
+
+    return () => mounted = false
+
   }, [client, payload, participant.identity]);
 
   // const classes = useStyles();
