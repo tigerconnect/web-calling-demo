@@ -58,3 +58,7 @@
   display: flex;
   margin-bottom: 12px;
 }
+
+#incoming-call .avatar-image {
+  margin-right: 10px;
+}

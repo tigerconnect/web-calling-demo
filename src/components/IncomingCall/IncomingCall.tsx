@@ -4,6 +4,7 @@ import { User } from "../../types";
 import "./IncomingCall.css";
 
 // import { UserAvatar } from '../UserAvatar/UserAvatar';
+import AvatarImage from '../AvatarImage/AvatarImage'
 import Fab from "../Fab/Fab";
 
 import { ReactComponent as CallDeclineIcon } from "../../images/call-decline.svg";
@@ -99,12 +100,7 @@ export default function IncomingCall() {
   return (
     <div id="incoming-call">
       <div className="header-container">
-        {/* <UserAvatar
-          user={caller}
-          size={38}
-          smallVersion={true}
-          shouldUseMinWidth={true}
-        /> */}
+        <AvatarImage entity={caller} />
         <div className="header-text">
           <div className="call-header">Call from {caller.displayName}</div>
           {!recipients.length && (
