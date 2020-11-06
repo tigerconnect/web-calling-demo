@@ -19,7 +19,6 @@ const config = {
   eslint: {
     configure: {
       "globals": {
-        // "__SDK_VERSION__": "readonly",
         "self": "writable"
       },
     },
@@ -27,9 +26,7 @@ const config = {
   webpack: {
     plugins: [
       new webpack.DefinePlugin({
-        // __DEV__: !isProduction,
         __SDK_VERSION__: `"${require('./src/js-sdk/package.json').version}"`,
-        // buildInfo: JSON.stringify(buildInfo),
       }),
     ],
   },
