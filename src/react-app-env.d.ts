@@ -2,5 +2,6 @@
 
 
 interface Window {
-  twilioRoom: any
+  twilioRoom: any;
+  TigerConnect: any;
 }

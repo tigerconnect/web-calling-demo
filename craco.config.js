@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 
 const disableSymlinkResolution = {
   plugin: {
@@ -22,13 +21,6 @@ const config = {
         "self": "writable"
       },
     },
-  },
-  webpack: {
-    plugins: [
-      new webpack.DefinePlugin({
-        __SDK_VERSION__: `"${require('./src/js-sdk/package.json').version}"`,
-      }),
-    ],
   },
 };
 

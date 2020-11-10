@@ -103,14 +103,10 @@ export default function IncomingCall() {
         <AvatarImage entity={caller} />
         <div className="header-text">
           <div className="call-header">Call from {caller.displayName}</div>
-          {!recipients.length && (
-            <div className="network-header">Patient Call</div>
-          )}
         </div>
       </div>
       {!!recipients.length && (
         <div className="members-container">
-          <div className="network-header">Patient Call</div>
           <div className="member-list">{buildMembersList()}</div>
         </div>
       )}

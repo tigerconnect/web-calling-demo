@@ -1,11 +1,10 @@
 import React, { useCallback, createContext, useContext, useEffect, useState } from "react";
 import Video from "twilio-video";
 import { User } from "./types";
-const { Client: TigerConnectClient } = require("./js-sdk/src");
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const client = new TigerConnectClient({
+const client = new window.TigerConnect.Client({
   apiEnv: urlParams.get("apiEnv"),
   keepConversationsForAllForums: true,
   manuallyRequestEventQueueBatch: false,

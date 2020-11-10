@@ -1,3 +1,17 @@
+## Installing the TigerConnect SDK
+
+Download the `v12.5.0beta3` version of the 'tigerconnect-sdk-web.min.js' bundle file from [tigerconnect/js-sdk](https://github.com/tigerconnect/js-sdk/tree/feature/v12.5.0beta3)
+
+Place the 'tigerconnect-sdk-web.min.js' bundle in the `/public` directory
+
+
+## Starting the Demo App
+
+After installing the TigerConnect SDK, run the npm start command from the root directory:
+
+### `npm start`
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
