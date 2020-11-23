@@ -1,0 +1,63 @@
+name: Continuous-Deployment
+
+# Run this workflow every time a new commit pushed action branch
+on:
+  push:
+    branches: [ action ]
+
+jobs:
+  deploy:
+    # Name the Job
+    name: Deploy To AWS
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Setup Node so that we can use npm commands
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+
+      # Clone tigerconnect/js-sdk repo so we can use latest public version
+      - name: Checkout public js-sdk repo
+        uses: actions/checkout@v2
+        with:
+          path: './js-sdk'
+          repository: tigerconnect/js-sdk
+          ref: 12.5.0beta3
+
+      # Clone web-calling-demo repo
+      - name: Checkout web-calling-demo
+        uses: actions/checkout@v2
+        with:
+          path: './web-calling-demo'
+
+      # CD into web-calling-demo directory
+      - run: cd web-calling-demo
+
+      # Install deps for web-calling-demo repo
+      - run: npm install
+
+      # Build web-calling-demo
+      - run: npm run-script build
+
+      # Copy js-sdk bundle into build directory
+      - run: cp ../js-sdk/tigerconnect-sdk-web.min.js ./build/
+
+      # Push build to S3 bucket
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID_GITHUB_ACTIONS }}
+          aws_secret_access_key: ${{ secrets.AWS_KEY_SECRET_GITHUB_ACTIONS}}
+          aws_bucket: ${{ secrets.AWS_WEB_CALLING_DEMO_S3_BUCKET }}
+          source_dir: './web-calling-demo/build'
+
+      # Invalidate Cloudfront
+      - uses: awact/cloudfront-action@master
+        env:
+          SOURCE_PATH: './public'
+          AWS_REGION: 'us-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID_GITHUB_ACTIONS }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET_GITHUB_ACTIONS }}
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
