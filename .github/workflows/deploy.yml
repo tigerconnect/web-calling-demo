@@ -23,8 +23,9 @@ jobs:
       - name: Checkout public js-sdk repo
         uses: actions/checkout@v2
         with:
-          path: './js-sdk'
           repository: tigerconnect/js-sdk
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          path: './js-sdk'
           ref: v12.5.0beta3
 
       # Clone web-calling-demo repo
