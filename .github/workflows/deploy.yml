@@ -34,23 +34,16 @@ jobs:
         with:
           path: web-calling-demo
 
-      # CD into web-calling-demo directory
-      # - run: cd web-calling-demo
-
-      # # Install deps for web-calling-demo repo
-      # - run: npm install
-
-      # # Build web-calling-demo
-      # - run: npm run-script build
-
+      # Build web-calling-demo
       - name: NPM install and build
         run: |
           pushd web-calling-demo
           npm install
           npm run-script build
+          popd
 
       # Copy js-sdk bundle into build directory
-      - run: cp ../js-sdk/tigerconnect-sdk-web.min.js ./build/
+      - run: cp js-sdk/tigerconnect-sdk-web.min.js web-calling-demo/build/
 
       # Push build to S3 bucket
       - uses: shallwefootball/s3-upload-action@master
@@ -58,7 +51,7 @@ jobs:
           aws_key_id: ${{ secrets.AWS_KEY_ID_GITHUB_ACTIONS }}
           aws_secret_access_key: ${{ secrets.AWS_KEY_SECRET_GITHUB_ACTIONS}}
           aws_bucket: ${{ secrets.AWS_WEB_CALLING_DEMO_S3_BUCKET }}
-          source_dir: './web-calling-demo/build'
+          source_dir: 'web-calling-demo/build'
 
       # Invalidate Cloudfront
       - uses: awact/cloudfront-action@master
