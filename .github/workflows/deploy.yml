@@ -25,23 +25,29 @@ jobs:
         with:
           repository: tigerconnect/js-sdk
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-          path: './js-sdk'
+          path: js-sdk
           ref: feature/v12.5.0beta3
 
       # Clone web-calling-demo repo
       - name: Checkout web-calling-demo
         uses: actions/checkout@v2
         with:
-          path: './web-calling-demo'
+          path: web-calling-demo
 
       # CD into web-calling-demo directory
       # - run: cd web-calling-demo
 
-      # Install deps for web-calling-demo repo
-      - run: npm install
+      # # Install deps for web-calling-demo repo
+      # - run: npm install
 
-      # Build web-calling-demo
-      - run: npm run-script build
+      # # Build web-calling-demo
+      # - run: npm run-script build
+
+      - name: NPM install and build
+        run: |
+          pushd web-calling-demo
+          npm install
+          npm run-script build
 
       # Copy js-sdk bundle into build directory
       - run: cp ../js-sdk/tigerconnect-sdk-web.min.js ./build/
