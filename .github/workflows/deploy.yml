@@ -26,7 +26,7 @@ jobs:
           repository: tigerconnect/js-sdk
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           path: './js-sdk'
-          ref: v12.5.0beta3
+          ref: feature/v12.5.0beta3
 
       # Clone web-calling-demo repo
       - name: Checkout web-calling-demo
