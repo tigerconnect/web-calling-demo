@@ -35,7 +35,7 @@ jobs:
           path: './web-calling-demo'
 
       # CD into web-calling-demo directory
-      - run: cd web-calling-demo
+      # - run: cd web-calling-demo
 
       # Install deps for web-calling-demo repo
       - run: npm install
